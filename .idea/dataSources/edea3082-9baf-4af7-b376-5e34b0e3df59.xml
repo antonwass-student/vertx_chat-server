@@ -1,0 +1,569 @@
+<dataSource name="SQL Server (Microsoft) - community@communitylab.database.windows.net">
+  <database-model serializer="dbm" rdbms="MSSQL" format-version="2.6">
+    <database id="1" name="community">
+      <object-id>5</object-id>
+      <visible>1</visible>
+    </database>
+    <database id="2" name="master">
+      <object-id>1</object-id>
+      <visible>1</visible>
+    </database>
+    <schema id="3" parent="1" name="dbo">
+      <object-id>1</object-id>
+      <visible>1</visible>
+      <introspection-timestamp>2016-12-14.21:35:57.610</introspection-timestamp>
+    </schema>
+    <schema id="4" parent="1" name="guest">
+      <object-id>2</object-id>
+    </schema>
+    <schema id="5" parent="1" name="INFORMATION_SCHEMA">
+      <object-id>3</object-id>
+    </schema>
+    <schema id="6" parent="1" name="sys">
+      <object-id>4</object-id>
+    </schema>
+    <schema id="7" parent="1" name="db_owner">
+      <object-id>16384</object-id>
+    </schema>
+    <schema id="8" parent="1" name="db_accessadmin">
+      <object-id>16385</object-id>
+    </schema>
+    <schema id="9" parent="1" name="db_securityadmin">
+      <object-id>16386</object-id>
+    </schema>
+    <schema id="10" parent="1" name="db_ddladmin">
+      <object-id>16387</object-id>
+    </schema>
+    <schema id="11" parent="1" name="db_backupoperator">
+      <object-id>16389</object-id>
+    </schema>
+    <schema id="12" parent="1" name="db_datareader">
+      <object-id>16390</object-id>
+    </schema>
+    <schema id="13" parent="1" name="db_datawriter">
+      <object-id>16391</object-id>
+    </schema>
+    <schema id="14" parent="1" name="db_denydatareader">
+      <object-id>16392</object-id>
+    </schema>
+    <schema id="15" parent="1" name="db_denydatawriter">
+      <object-id>16393</object-id>
+    </schema>
+    <table id="16" parent="3" name="Conversation">
+      <object-id>1221579390</object-id>
+      <created-timestamp>2016-11-10.17:40:04.170</created-timestamp>
+      <modified-timestamp>2016-11-23.16:15:52.983</modified-timestamp>
+    </table>
+    <table id="17" parent="3" name="FriendRequest">
+      <object-id>1029578706</object-id>
+      <created-timestamp>2016-11-10.17:33:05.503</created-timestamp>
+      <modified-timestamp>2016-11-10.17:33:05.517</modified-timestamp>
+    </table>
+    <table id="18" parent="3" name="Friendship">
+      <object-id>1141579105</object-id>
+      <created-timestamp>2016-11-10.17:37:56.063</created-timestamp>
+      <modified-timestamp>2016-11-10.17:37:56.103</modified-timestamp>
+    </table>
+    <table id="19" parent="3" name="Message">
+      <object-id>1493580359</object-id>
+      <created-timestamp>2016-11-10.17:41:30.200</created-timestamp>
+      <modified-timestamp>2016-11-23.16:19:25.793</modified-timestamp>
+    </table>
+    <table id="20" parent="3" name="Profile">
+      <object-id>917578307</object-id>
+      <created-timestamp>2016-11-10.17:30:38.697</created-timestamp>
+      <modified-timestamp>2016-11-10.17:30:38.747</modified-timestamp>
+    </table>
+    <table id="21" parent="3" name="User_Conversation">
+      <object-id>1877581727</object-id>
+      <created-timestamp>2016-11-23.16:14:05.990</created-timestamp>
+      <modified-timestamp>2016-11-23.16:15:52.983</modified-timestamp>
+    </table>
+    <table id="22" parent="3" name="Usr">
+      <object-id>885578193</object-id>
+      <created-timestamp>2016-11-10.17:24:07.110</created-timestamp>
+      <modified-timestamp>2016-11-23.16:19:25.793</modified-timestamp>
+    </table>
+    <table id="23" parent="3" name="Wall">
+      <object-id>1093578934</object-id>
+      <created-timestamp>2016-11-10.17:33:23.363</created-timestamp>
+      <modified-timestamp>2016-11-10.17:41:25.397</modified-timestamp>
+    </table>
+    <table id="24" parent="3" name="WallPost">
+      <object-id>1413580074</object-id>
+      <created-timestamp>2016-11-10.17:41:25.393</created-timestamp>
+      <modified-timestamp>2016-11-15.16:53:17.697</modified-timestamp>
+    </table>
+    <column id="25" parent="16" name="conversation_id">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+      <sequence-identity>1(7)</sequence-identity>
+    </column>
+    <column id="26" parent="16" name="namn">
+      <mandatory>1</mandatory>
+      <data-type>nvarchar(64)|0</data-type>
+    </column>
+    <index id="27" parent="16" name="PK__Conversa__311E7E9ACCB67A32">
+      <name-surrogate>1</name-surrogate>
+      <columns>conversation_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <clustering>1</clustering>
+      <position>1</position>
+    </index>
+    <index id="28" parent="16" name="Conversation_conversation_id_uindex">
+      <columns>conversation_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <position>2</position>
+    </index>
+    <key id="29" parent="16" name="PK__Conversa__311E7E9ACCB67A32">
+      <name-surrogate>1</name-surrogate>
+      <object-id>1237579447</object-id>
+      <created-timestamp>2016-11-10.17:40:04.170</created-timestamp>
+      <modified-timestamp>2016-11-10.17:40:04.170</modified-timestamp>
+      <columns>conversation_id</columns>
+      <underlying-index>PK__Conversa__311E7E9ACCB67A32</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="30" parent="17" name="friendRequest_id">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+      <sequence-identity>1(12)</sequence-identity>
+    </column>
+    <column id="31" parent="17" name="sender">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+    </column>
+    <column id="32" parent="17" name="message">
+      <data-type>nvarchar(256)|0</data-type>
+    </column>
+    <column id="33" parent="17" name="receiver">
+      <data-type>int|0</data-type>
+    </column>
+    <index id="34" parent="17" name="PK__FriendRe__E4C347360730D13F">
+      <name-surrogate>1</name-surrogate>
+      <columns>friendRequest_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <clustering>1</clustering>
+      <position>1</position>
+    </index>
+    <index id="35" parent="17" name="FriendRequest_friendRequest_id_uindex">
+      <columns>friendRequest_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <position>2</position>
+    </index>
+    <key id="36" parent="17" name="PK__FriendRe__E4C347360730D13F">
+      <name-surrogate>1</name-surrogate>
+      <object-id>1045578763</object-id>
+      <created-timestamp>2016-11-10.17:33:05.507</created-timestamp>
+      <modified-timestamp>2016-11-10.17:33:05.507</modified-timestamp>
+      <columns>friendRequest_id</columns>
+      <underlying-index>PK__FriendRe__E4C347360730D13F</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="37" parent="17" name="FriendRequestSender_User_user_id_fk">
+      <object-id>1061578820</object-id>
+      <created-timestamp>2016-11-10.17:33:05.507</created-timestamp>
+      <modified-timestamp>2016-11-10.17:33:05.507</modified-timestamp>
+      <columns>sender</columns>
+      <ref-key>~.Usr.PK__User__B9BE370FD1BDDEA8</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="38" parent="17" name="FriendRequestReceiver_User_user_id_fk">
+      <object-id>1077578877</object-id>
+      <created-timestamp>2016-11-10.17:33:05.507</created-timestamp>
+      <modified-timestamp>2016-11-10.17:33:05.507</modified-timestamp>
+      <columns>receiver</columns>
+      <ref-key>~.Usr.PK__User__B9BE370FD1BDDEA8</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="39" parent="18" name="friendship_id">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+      <sequence-identity>1(10)</sequence-identity>
+    </column>
+    <column id="40" parent="18" name="inviter">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+    </column>
+    <column id="41" parent="18" name="receiver">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+    </column>
+    <column id="42" parent="18" name="started">
+      <data-type>datetime|0</data-type>
+      <default-expression>getdate()</default-expression>
+    </column>
+    <index id="43" parent="18" name="PK__Friendsh__BC802BCF12F76388">
+      <name-surrogate>1</name-surrogate>
+      <columns>friendship_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <clustering>1</clustering>
+      <position>1</position>
+    </index>
+    <index id="44" parent="18" name="Friendship_friendship_id_uindex">
+      <columns>friendship_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <position>2</position>
+    </index>
+    <key id="45" parent="18" name="PK__Friendsh__BC802BCF12F76388">
+      <name-surrogate>1</name-surrogate>
+      <object-id>1157579162</object-id>
+      <created-timestamp>2016-11-10.17:37:56.063</created-timestamp>
+      <modified-timestamp>2016-11-10.17:37:56.063</modified-timestamp>
+      <columns>friendship_id</columns>
+      <underlying-index>PK__Friendsh__BC802BCF12F76388</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="46" parent="18" name="FriendshipInviter___fk">
+      <object-id>1189579276</object-id>
+      <created-timestamp>2016-11-10.17:37:56.063</created-timestamp>
+      <modified-timestamp>2016-11-10.17:37:56.063</modified-timestamp>
+      <columns>inviter</columns>
+      <ref-key>~.Usr.PK__User__B9BE370FD1BDDEA8</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="47" parent="18" name="FriendshipReceiver___fk">
+      <object-id>1205579333</object-id>
+      <created-timestamp>2016-11-10.17:37:56.063</created-timestamp>
+      <modified-timestamp>2016-11-10.17:37:56.063</modified-timestamp>
+      <columns>receiver</columns>
+      <ref-key>~.Usr.PK__User__B9BE370FD1BDDEA8</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="48" parent="19" name="message_id">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+      <sequence-identity>1(52)</sequence-identity>
+    </column>
+    <column id="49" parent="19" name="sender">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+    </column>
+    <column id="50" parent="19" name="sent">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+      <default-expression>getdate()</default-expression>
+    </column>
+    <column id="51" parent="19" name="receiver">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+    </column>
+    <column id="52" parent="19" name="text">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <index id="53" parent="19" name="PK__Message__0BBF6EE63DD243B2">
+      <name-surrogate>1</name-surrogate>
+      <columns>message_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <clustering>1</clustering>
+      <position>1</position>
+    </index>
+    <index id="54" parent="19" name="Message_message_id_uindex">
+      <columns>message_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <position>2</position>
+    </index>
+    <key id="55" parent="19" name="PK__Message__0BBF6EE63DD243B2">
+      <name-surrogate>1</name-surrogate>
+      <object-id>1509580416</object-id>
+      <created-timestamp>2016-11-10.17:41:30.200</created-timestamp>
+      <modified-timestamp>2016-11-10.17:41:30.200</modified-timestamp>
+      <columns>message_id</columns>
+      <underlying-index>PK__Message__0BBF6EE63DD243B2</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="56" parent="19" name="Message_Usr_user_id_fk">
+      <object-id>1957582012</object-id>
+      <created-timestamp>2016-11-23.16:19:25.793</created-timestamp>
+      <modified-timestamp>2016-11-23.16:19:25.793</modified-timestamp>
+      <columns>sender</columns>
+      <ref-key>~.Usr.PK__User__B9BE370FD1BDDEA8</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="57" parent="19" name="Message_Conversation_conversation_id_fk">
+      <object-id>1541580530</object-id>
+      <created-timestamp>2016-11-10.17:41:30.207</created-timestamp>
+      <modified-timestamp>2016-11-10.17:41:30.207</modified-timestamp>
+      <columns>receiver</columns>
+      <ref-key>~.Conversation.PK__Conversa__311E7E9ACCB67A32</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="58" parent="20" name="profile_id">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="59" parent="20" name="owner">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+    </column>
+    <column id="60" parent="20" name="birthday">
+      <data-type>date|0</data-type>
+    </column>
+    <column id="61" parent="20" name="description">
+      <data-type>varchar(1024)|0</data-type>
+    </column>
+    <column id="62" parent="20" name="picture">
+      <data-type>image|0</data-type>
+    </column>
+    <index id="63" parent="20" name="PK__Profile__AEBB701F1820DFC7">
+      <name-surrogate>1</name-surrogate>
+      <columns>profile_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <clustering>1</clustering>
+      <position>1</position>
+    </index>
+    <index id="64" parent="20" name="Profile_profile_id_uindex">
+      <columns>profile_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <position>2</position>
+    </index>
+    <index id="65" parent="20" name="Profile_owner_uindex">
+      <columns>owner</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <position>3</position>
+    </index>
+    <key id="66" parent="20" name="PK__Profile__AEBB701F1820DFC7">
+      <name-surrogate>1</name-surrogate>
+      <object-id>933578364</object-id>
+      <created-timestamp>2016-11-10.17:30:38.700</created-timestamp>
+      <modified-timestamp>2016-11-10.17:30:38.700</modified-timestamp>
+      <columns>profile_id</columns>
+      <underlying-index>PK__Profile__AEBB701F1820DFC7</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="67" parent="20" name="Profile_User_user_id_fk">
+      <object-id>949578421</object-id>
+      <created-timestamp>2016-11-10.17:30:38.700</created-timestamp>
+      <modified-timestamp>2016-11-10.17:30:38.700</modified-timestamp>
+      <columns>owner</columns>
+      <ref-key>~.Usr.PK__User__B9BE370FD1BDDEA8</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="68" parent="21" name="user_convo_id">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+      <sequence-identity>1(11)</sequence-identity>
+    </column>
+    <column id="69" parent="21" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+    </column>
+    <column id="70" parent="21" name="convo_id">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+    </column>
+    <index id="71" parent="21" name="PK__User_Con__2D0AA978A6BAFC4B">
+      <name-surrogate>1</name-surrogate>
+      <columns>user_convo_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <clustering>1</clustering>
+      <position>1</position>
+    </index>
+    <index id="72" parent="21" name="User_Conversation_user_convo_id_uindex">
+      <columns>user_convo_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <position>2</position>
+    </index>
+    <key id="73" parent="21" name="PK__User_Con__2D0AA978A6BAFC4B">
+      <name-surrogate>1</name-surrogate>
+      <object-id>1893581784</object-id>
+      <created-timestamp>2016-11-23.16:14:05.990</created-timestamp>
+      <modified-timestamp>2016-11-23.16:14:05.990</modified-timestamp>
+      <columns>user_convo_id</columns>
+      <underlying-index>PK__User_Con__2D0AA978A6BAFC4B</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="74" parent="21" name="User_Conversation_Usr_user_id_fk">
+      <object-id>1909581841</object-id>
+      <created-timestamp>2016-11-23.16:15:14.750</created-timestamp>
+      <modified-timestamp>2016-11-23.16:15:14.750</modified-timestamp>
+      <columns>user_id</columns>
+      <ref-key>~.Usr.PK__User__B9BE370FD1BDDEA8</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="75" parent="21" name="User_Conversation_Conversation_conversation_id_fk">
+      <object-id>1925581898</object-id>
+      <created-timestamp>2016-11-23.16:15:52.983</created-timestamp>
+      <modified-timestamp>2016-11-23.16:15:52.983</modified-timestamp>
+      <columns>convo_id</columns>
+      <ref-key>~.Conversation.PK__Conversa__311E7E9ACCB67A32</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="76" parent="22" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+      <sequence-identity>1(24)</sequence-identity>
+    </column>
+    <column id="77" parent="22" name="name">
+      <mandatory>1</mandatory>
+      <data-type>nvarchar(64)|0</data-type>
+    </column>
+    <column id="78" parent="22" name="email">
+      <mandatory>1</mandatory>
+      <data-type>nvarchar(128)|0</data-type>
+    </column>
+    <column id="79" parent="22" name="password">
+      <mandatory>1</mandatory>
+      <data-type>nvarchar(512)|0</data-type>
+    </column>
+    <column id="80" parent="22" name="session_id">
+      <data-type>nvarchar(128)|0</data-type>
+    </column>
+    <index id="81" parent="22" name="PK__User__B9BE370FD1BDDEA8">
+      <name-surrogate>1</name-surrogate>
+      <columns>user_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <clustering>1</clustering>
+      <position>1</position>
+    </index>
+    <index id="82" parent="22" name="User_user_id_uindex">
+      <columns>user_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <position>2</position>
+    </index>
+    <index id="83" parent="22" name="User_email_uindex">
+      <columns>email</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <position>3</position>
+    </index>
+    <key id="84" parent="22" name="PK__User__B9BE370FD1BDDEA8">
+      <name-surrogate>1</name-surrogate>
+      <object-id>901578250</object-id>
+      <created-timestamp>2016-11-10.17:24:07.160</created-timestamp>
+      <modified-timestamp>2016-11-10.17:24:07.160</modified-timestamp>
+      <columns>user_id</columns>
+      <underlying-index>PK__User__B9BE370FD1BDDEA8</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="85" parent="23" name="wall_id">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+      <sequence-identity>1(13)</sequence-identity>
+    </column>
+    <column id="86" parent="23" name="owner">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+    </column>
+    <index id="87" parent="23" name="PK__Wall__D363C4153E344331">
+      <name-surrogate>1</name-surrogate>
+      <columns>wall_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <clustering>1</clustering>
+      <position>1</position>
+    </index>
+    <index id="88" parent="23" name="Wall_wall_id_uindex">
+      <columns>wall_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <position>2</position>
+    </index>
+    <key id="89" parent="23" name="PK__Wall__D363C4153E344331">
+      <name-surrogate>1</name-surrogate>
+      <object-id>1109578991</object-id>
+      <created-timestamp>2016-11-10.17:33:23.363</created-timestamp>
+      <modified-timestamp>2016-11-10.17:33:23.363</modified-timestamp>
+      <columns>wall_id</columns>
+      <underlying-index>PK__Wall__D363C4153E344331</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="90" parent="23" name="Wall_User_user_id_fk">
+      <object-id>1125579048</object-id>
+      <created-timestamp>2016-11-10.17:33:23.363</created-timestamp>
+      <modified-timestamp>2016-11-10.17:33:23.363</modified-timestamp>
+      <columns>owner</columns>
+      <ref-key>~.Usr.PK__User__B9BE370FD1BDDEA8</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="91" parent="24" name="wallpost_id">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+      <sequence-identity>1(26)</sequence-identity>
+    </column>
+    <column id="92" parent="24" name="wall">
+      <mandatory>1</mandatory>
+      <data-type>int|0</data-type>
+    </column>
+    <column id="93" parent="24" name="message">
+      <data-type>varchar(512)|0</data-type>
+    </column>
+    <column id="94" parent="24" name="timestamp">
+      <data-type>datetime|0</data-type>
+      <default-expression>getdate()</default-expression>
+    </column>
+    <column id="95" parent="24" name="picture">
+      <data-type>image|0</data-type>
+    </column>
+    <column id="96" parent="24" name="author">
+      <data-type>int|0</data-type>
+    </column>
+    <index id="97" parent="24" name="PK__WallPost__6D004039407BEABF">
+      <name-surrogate>1</name-surrogate>
+      <columns>wallpost_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <clustering>1</clustering>
+      <position>1</position>
+    </index>
+    <index id="98" parent="24" name="WallPost_wallpost_id_uindex">
+      <columns>wallpost_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+      <position>2</position>
+    </index>
+    <key id="99" parent="24" name="PK__WallPost__6D004039407BEABF">
+      <name-surrogate>1</name-surrogate>
+      <object-id>1429580131</object-id>
+      <created-timestamp>2016-11-10.17:41:25.397</created-timestamp>
+      <modified-timestamp>2016-11-10.17:41:25.397</modified-timestamp>
+      <columns>wallpost_id</columns>
+      <underlying-index>PK__WallPost__6D004039407BEABF</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="100" parent="24" name="WallPost_Wall_wall_id_fk">
+      <object-id>1461580245</object-id>
+      <created-timestamp>2016-11-10.17:41:25.397</created-timestamp>
+      <modified-timestamp>2016-11-10.17:41:25.397</modified-timestamp>
+      <columns>wall</columns>
+      <ref-key>~.Wall.PK__Wall__D363C4153E344331</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="101" parent="24" name="WallPost_User_user_id_fk">
+      <object-id>1861581670</object-id>
+      <created-timestamp>2016-11-15.16:53:17.697</created-timestamp>
+      <modified-timestamp>2016-11-15.16:53:17.697</modified-timestamp>
+      <columns>author</columns>
+      <ref-key>~.Usr.PK__User__B9BE370FD1BDDEA8</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+  </database-model>
+</dataSource>
