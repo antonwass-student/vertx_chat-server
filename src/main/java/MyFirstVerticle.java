@@ -61,7 +61,7 @@ public class MyFirstVerticle extends AbstractVerticle {
                         break;
                     case "conversations":
                         //do async sql call
-                        ChatDB.getConversations(sqlClient, Integer.parseInt(json.getString("user")), res->{
+                        ChatDB.getConversations(sqlClient, json.getInteger("user"), res->{
                             JsonObject message = new JsonObject();
                             message.put("type", "conversations");
                             message.put("conversations", new JsonArray(res.getRows()));
