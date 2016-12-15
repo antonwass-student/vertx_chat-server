@@ -73,6 +73,14 @@ public class MyFirstVerticle extends AbstractVerticle {
                         //open a conversation.
                         //register a consumer.
                         //get messages from it
+
+                        ChatDB.getMessagesFromConversation(sqlClient, Integer.parseInt(json.getString("id")), res->{
+                            JsonObject message = new JsonObject();
+                            message.put("type", "messages");
+                            message.put("messages", new JsonArray(res.getRows()));
+                            serverWebSocket.writeFinalTextFrame(message.toString());
+                        });
+
                         break;
                     case "new":
                         //new conversation
