@@ -39,7 +39,6 @@ public class MyFirstVerticle extends AbstractVerticle {
             serverWebSocket.frameHandler(frame->{
                 System.out.println(frame.textData());
                 JsonObject json = new JsonObject(frame.textData());
-                System.out.println(json.toString());
 
                 switch(json.getString("type")){
                     case "message":
@@ -88,11 +87,18 @@ public class MyFirstVerticle extends AbstractVerticle {
                         break;
                     case "new":
                         //new conversation
+                        ChatDB.newConversation(sqlClient, json.getString("name"), json.getJsonArray("members"));
                         break;
                     case "invite":
-                        //add a user to conversation
+                        //add a list of users to conversation
                         break;
                     case "friends":
+                        ChatDB.getFriendsOfUser(sqlClient, Integer.parseInt(json.getString("id")), res->{
+                            JsonObject msg = new JsonObject();
+                            msg.put("type", "friends");
+                            msg.put("friends", new JsonArray(res));
+                            serverWebSocket.writeFinalTextFrame(msg.toString());
+                        });
                         break;
 
                 }

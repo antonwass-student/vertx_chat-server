@@ -21,8 +21,10 @@
         </div>
 
         <div>
-            <button onclick="getConversations()">Get conversations</button>
-            <button onclick="openConversation()">Get messages</button>
+            <button onclick="getConversations()">Get conversations</button><br>
+            <button onclick="openConversation()">Get messages</button><br>
+            <button onclick="createConversation()">New conversation</button><br>
+            <button onclick="getFriends()">Get friends</button><br>
         </div>
 
         <div>
@@ -70,8 +72,8 @@
                     break;
                 case "friends":
                     document.getElementById('friends').innerHTML = "";
-                    msg.conversations.forEach(function(item, index){
-                        document.getElementById('friends').innerHTML += item.conversation_id + " : " + item.namn +"</br>";
+                    msg.friends.forEach(function(item, index){
+                        document.getElementById('friends').innerHTML += item.user_id + " : " + item.name +"</br>";
                     });
                     break;
                 case "messages":
@@ -111,10 +113,6 @@
         socket.send(JSON.stringify(msg));
     }
 
-    function getFriends(){
-
-    }
-
     function openConversation(){
         var msg = {
             type:'openConversation',
@@ -130,7 +128,16 @@
             name:'test'
         }
 
-        socket.send(msg.toString());
+        socket.send(JSON.stringify(msg));
+    }
+
+    function getFriends(){
+        var msg = {
+            type:'friends',
+            id:document.getElementById('user_id').value
+        }
+
+        socket.send(JSON.stringify(msg));
     }
 
 
