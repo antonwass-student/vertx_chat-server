@@ -53,7 +53,8 @@ public class ChatDB {
             if(connResult.succeeded()){
                 SQLConnection conn = connResult.result();
 
-                String query = "SELECT * FROM Message WHERE receiver = ?";
+                String query = "SELECT sent,text,user_id,name,receiver FROM Message " +
+                        "INNER JOIN Usr ON sender = Usr.user_id WHERE receiver = ?";
 
                 JsonArray params = new JsonArray().add(convId);
 
@@ -93,23 +94,23 @@ public class ChatDB {
 
     public static void newConversation(JDBCClient client,
                                        String groupName,
-                                       JsonArray members){
+                                       JsonArray members, Handler<ResultSet> handler){
 
         client.getConnection(connResult->{
             if(connResult.succeeded()){
                 SQLConnection conn = connResult.result();
-
 
                 String query = "INSERT INTO Conversation (namn) VALUES(?)";
 
                 JsonArray params = new JsonArray().add(groupName);
                 conn.updateWithParams(query, params, res->{
                     if(res.succeeded()){
-                        String queryScope = "SELECT TOP 1 conversation_id FROM Conversation ORDER BY conversation_id DESC;";
+                        String queryScope = "SELECT TOP 1 * FROM Conversation ORDER BY conversation_id DESC;";
 
                         conn.query(queryScope, resId->{
                             int id = resId.result().getResults().get(0).getInteger(0);
                             addMembersToConversation(client, members, id);
+                            handler.handle(resId.result());
                         });
 
 
