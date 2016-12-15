@@ -64,4 +64,24 @@ public class ChatDB {
             }
         });
     }
+
+    public static void saveMessageToDB(JDBCClient client, int receiver, int sender, String text){
+
+        client.getConnection(connResult->{
+            if(connResult.succeeded()){
+                SQLConnection conn = connResult.result();
+
+                String query = "INSERT INTO Message (sender, receiver, text) VALUES(?,?,?)";
+
+                JsonArray params = new JsonArray().add(sender).add(receiver).add(text);
+
+                conn.updateWithParams(query, params, res->{
+                    conn.close();
+                });
+            }else{
+                connResult.cause().printStackTrace();
+            }
+        });
+
+    }
 }

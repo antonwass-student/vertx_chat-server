@@ -96,7 +96,8 @@
         var msg = {
             type:'message',
             message:document.getElementById('message').value,
-            id:document.getElementById('conv_id').value
+            id:document.getElementById('conv_id').value,
+            sender:document.getElementById('user_id').value
         }
         socket.send(JSON.stringify(msg));
     }

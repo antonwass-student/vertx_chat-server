@@ -1,6 +1,7 @@
 import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.EventBus;
+import io.vertx.core.eventbus.MessageConsumer;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
@@ -34,19 +35,6 @@ public class MyFirstVerticle extends AbstractVerticle {
                 .websocketHandler(serverWebSocket -> {
             System.out.println("Connected!");
 
-            //On socket close
-            serverWebSocket.closeHandler(handler->{
-                System.out.println("Disconnected!");
-                eb.consumer("chat.message").unregister();
-            });
-
-            //Messages from the event bus
-            eb.consumer("chat.conversation.1", message->{
-                JsonObject msg = new JsonObject();
-                msg.put("type", "message").put("message", message.body().toString());
-                serverWebSocket.writeFinalTextFrame(msg.toString());
-            });
-
             //Messages from client
             serverWebSocket.frameHandler(frame->{
                 System.out.println(frame.textData());
@@ -58,6 +46,11 @@ public class MyFirstVerticle extends AbstractVerticle {
                         //send a message to a conversation
                         eb.publish("chat.conversation." + json.getString("id"), json.getString("message"));
                         //save message to database.
+
+                        ChatDB.saveMessageToDB(sqlClient,
+                                Integer.parseInt(json.getString("id")),
+                                Integer.parseInt(json.getString("sender")),
+                                json.getString("message"));
                         break;
                     case "conversations":
                         //do async sql call
@@ -70,10 +63,21 @@ public class MyFirstVerticle extends AbstractVerticle {
 
                         break;
                     case "openConversation":
-                        //open a conversation.
-                        //register a consumer.
-                        //get messages from it
+                        //maybe a init function that creates consumers for each conversation.
+                        //register a consumer for the specified conversation
+                        MessageConsumer<String> consumer = eb.consumer("chat.conversation." + json.getString("id"));
 
+                        consumer.handler( message->{
+                            JsonObject msg = new JsonObject();
+                            msg.put("type", "message").put("message", message.body().toString());
+                            serverWebSocket.writeFinalTextFrame(msg.toString());
+                        });
+
+                        serverWebSocket.closeHandler(handler->{
+                            consumer.unregister();
+                        });
+
+                        //get messages of conversation
                         ChatDB.getMessagesFromConversation(sqlClient, Integer.parseInt(json.getString("id")), res->{
                             JsonObject message = new JsonObject();
                             message.put("type", "messages");

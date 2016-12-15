@@ -6,7 +6,6 @@
     </database>
     <database id="2" name="master">
       <object-id>1</object-id>
-      <visible>1</visible>
     </database>
     <schema id="3" parent="1" name="dbo">
       <object-id>1</object-id>
