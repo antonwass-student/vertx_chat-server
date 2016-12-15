@@ -9,6 +9,9 @@ import io.vertx.ext.jdbc.JDBCClient;
 import io.vertx.ext.sql.SQLConnection;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /***
  * TODO: when a user connects to websocket, set a consumer for each conversation that the user is a member of.
@@ -17,6 +20,8 @@ import java.sql.Connection;
  *
  */
 public class MyFirstVerticle extends AbstractVerticle {
+
+    private Map<String,ChatClient> clients = new HashMap<String, ChatClient>();
 
     @Override
     public void start(){
@@ -30,16 +35,18 @@ public class MyFirstVerticle extends AbstractVerticle {
 
         EventBus eb = vertx.eventBus();
 
-        HttpServer server = vertx
-                .createHttpServer()
-                .websocketHandler(serverWebSocket -> {
-            System.out.println("Connected!");
+        HttpServer server = vertx.createHttpServer().websocketHandler(serverWebSocket -> {
+
+            clients.put(serverWebSocket.textHandlerID(), new ChatClient());
+
+            serverWebSocket.closeHandler(handler ->{
+                clients.remove(serverWebSocket.textHandlerID()).removeAll();
+            });
 
             //Messages from client
             serverWebSocket.frameHandler(frame->{
                 System.out.println(frame.textData());
                 JsonObject json = new JsonObject(frame.textData());
-                System.out.println(json.toString());
 
                 switch(json.getString("type")){
                     case "message":
@@ -65,17 +72,19 @@ public class MyFirstVerticle extends AbstractVerticle {
                     case "openConversation":
                         //maybe a init function that creates consumers for each conversation.
                         //register a consumer for the specified conversation
-                        MessageConsumer<String> consumer = eb.consumer("chat.conversation." + json.getString("id"));
+                        int id = Integer.parseInt(json.getString("id"));
+                        ChatClient cc = clients.get(serverWebSocket.textHandlerID());
+                        if(!cc.isSubscribing(id)){
 
-                        consumer.handler( message->{
-                            JsonObject msg = new JsonObject();
-                            msg.put("type", "message").put("message", message.body().toString());
-                            serverWebSocket.writeFinalTextFrame(msg.toString());
-                        });
+                            MessageConsumer<String> consumer = eb.consumer("chat.conversation." + json.getString("id"));
+                            cc.addConsumer(id, consumer);
 
-                        serverWebSocket.closeHandler(handler->{
-                            consumer.unregister();
-                        });
+                            consumer.handler( message->{
+                                JsonObject msg = new JsonObject();
+                                msg.put("type", "message").put("message", message.body().toString());
+                                serverWebSocket.writeFinalTextFrame(msg.toString());
+                            });
+                        }
 
                         //get messages of conversation
                         ChatDB.getMessagesFromConversation(sqlClient, Integer.parseInt(json.getString("id")), res->{
@@ -88,11 +97,21 @@ public class MyFirstVerticle extends AbstractVerticle {
                         break;
                     case "new":
                         //new conversation
+                        ChatDB.newConversation(sqlClient, json.getString("name"), json.getJsonArray("members"));
                         break;
                     case "invite":
-                        //add a user to conversation
+                        ChatDB.addMembersToConversation(sqlClient, json.getJsonArray("members"), json.getInteger("id"));
                         break;
                     case "friends":
+                        ChatDB.getFriendsOfUser(sqlClient, Integer.parseInt(json.getString("id")), res->{
+                            JsonObject msg = new JsonObject();
+                            msg.put("type", "friends");
+                            msg.put("friends", new JsonArray(res));
+                            serverWebSocket.writeFinalTextFrame(msg.toString());
+                        });
+                        break;
+                    case "subscribe":
+
                         break;
 
                 }
