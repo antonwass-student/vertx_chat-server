@@ -27,21 +27,61 @@ public class ChatDB {
                 JsonArray params = new JsonArray().add(userId);
 
                 conn.queryWithParams(query, params, res->{
-                    System.out.println("A result is here!");
+                    if(res.succeeded())
+                        handler.handle(res.result());
+                    else
+                        res.cause().printStackTrace();
+
+                    conn.close();
+                });
+            }else{
+                connResult.cause().printStackTrace();
+            }
+        });
+    }
+
+    public static void getMessagesFromConversation(JDBCClient client, int convId, Handler<ResultSet> handler){
+
+        client.getConnection(connResult->{
+            if(connResult.succeeded()){
+                SQLConnection conn = connResult.result();
+
+                String query = "SELECT * FROM Message WHERE receiver = ?";
+
+                JsonArray params = new JsonArray().add(convId);
+
+                conn.queryWithParams(query, params, res->{
                     if(res.succeeded()){
-                        System.out.println("Something succeeded");
                         handler.handle(res.result());
                     }else{
-                        //failed
-                        System.out.println("It failed...");
                         res.cause().printStackTrace();
                     }
 
                     conn.close();
                 });
             }else{
-                System.out.println("Could not get a connection to database.");
+                connResult.cause().printStackTrace();
             }
         });
+    }
+
+    public static void saveMessageToDB(JDBCClient client, int receiver, int sender, String text){
+
+        client.getConnection(connResult->{
+            if(connResult.succeeded()){
+                SQLConnection conn = connResult.result();
+
+                String query = "INSERT INTO Message (sender, receiver, text) VALUES(?,?,?)";
+
+                JsonArray params = new JsonArray().add(sender).add(receiver).add(text);
+
+                conn.updateWithParams(query, params, res->{
+                    conn.close();
+                });
+            }else{
+                connResult.cause().printStackTrace();
+            }
+        });
+
     }
 }
