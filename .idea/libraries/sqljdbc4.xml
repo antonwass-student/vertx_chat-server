@@ -2,6 +2,7 @@
   <library name="sqljdbc4">
     <CLASSES>
       <root url="jar://C:/Microsoft JDBC Driver 6.0 for SQL Server/sqljdbc_6.0/sve/sqljdbc4.jar!/" />
+      <root url="jar://C:/Program Files/Microsoft JDBC Driver 6.0 for SQL Server/sqljdbc_6.0/enu/sqljdbc4.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

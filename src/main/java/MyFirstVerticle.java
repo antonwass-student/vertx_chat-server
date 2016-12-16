@@ -103,9 +103,8 @@ public class MyFirstVerticle extends AbstractVerticle {
                     case "new":
                         //new conversation
                         ChatDB.newConversation(sqlClient, json.getString("name"), json.getJsonArray("members"), resultSet ->{
-                            JsonObject message = new JsonObject();
+                            JsonObject message = resultSet.getRows().get(0);
                             message.put("type", "newConversation");
-                            message.put("conversation", resultSet.getRows().get(0));
                             serverWebSocket.writeFinalTextFrame(message.toString());
                         });
 
